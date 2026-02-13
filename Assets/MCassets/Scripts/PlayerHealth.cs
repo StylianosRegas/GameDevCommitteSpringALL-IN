@@ -14,14 +14,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         currentHealth -= amount;
 
         if(currentHealth <= 0)
         {
-            //Add death screen
-            //Add animation: anim.SetBool("IsDead", true);
+            Destroy(gameObject);
         }
     }
 }
