@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor.Build;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class Card : MonoBehaviour
     public IEnumerator AbilityCooldown()
     {
 
-        Debug.Log("Ability used!");
+        Debug.Log("Cooldown start!");
 
         yield return new WaitForSeconds(cooldown);
 
@@ -24,4 +25,12 @@ public class Card : MonoBehaviour
         Debug.Log("Cooldown finished");
 
     }
+
+/*
+    public void useAbility()
+    {
+
+    }
+*/
+
 }

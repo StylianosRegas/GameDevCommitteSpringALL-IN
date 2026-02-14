@@ -276,7 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   CardType: 1
-  cooldown: 200
+  cooldown: 5
+  hasCooldown: 0
   name: Heart Regen
   description: heals one heart
 --- !u!4 &788770454
@@ -373,7 +374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   CardType: 3
-  cooldown: 0
+  cooldown: 5
+  hasCooldown: 0
   name: Poker Chip
   description: Shoots a poker chip in an arc
 --- !u!4 &1600186090
@@ -422,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CardType: 2
   cooldown: 5
+  hasCooldown: 0
   name: Dash
   description: Dashes player forward
 --- !u!4 &1672655212
@@ -469,7 +472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   CardType: 4
-  cooldown: 0
+  cooldown: 5
+  hasCooldown: 0
   name: Revolving Shield
   description: displays a shield that revolves around the player
 --- !u!4 &1694309021

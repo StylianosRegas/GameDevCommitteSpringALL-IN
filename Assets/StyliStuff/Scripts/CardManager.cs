@@ -44,17 +44,27 @@ public class CardManager : MonoBehaviour
             Debug.Log(cards[currCard].name);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && !cards[currCard].hasCooldown)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-
-            useAbility();
-            cards[currCard].hasCooldown = true;
+            if (cards[currCard].hasCooldown)
+            {
+                Debug.Log("nuh uh");
+            }
+            else
+            {
+               
+                cardAbility();
+                cards[currCard].hasCooldown = true;
+            }
         }
        
     }
 
-    public void useAbility()
+    public void cardAbility()
     {
+        //cards[currCard].useAbility()
         Debug.Log("Card ability used!");
+        StartCoroutine(cards[currCard].AbilityCooldown());
+       
     }
 }
