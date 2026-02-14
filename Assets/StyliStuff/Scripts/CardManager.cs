@@ -29,7 +29,7 @@ public class CardManager : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (currCard == cards.Count - 1)
             {
@@ -62,8 +62,9 @@ public class CardManager : MonoBehaviour
 
     public void cardAbility()
     {
-        //cards[currCard].useAbility()
+        
         Debug.Log("Card ability used!");
+        cards[currCard].useAbility();
         StartCoroutine(cards[currCard].AbilityCooldown());
        
     }

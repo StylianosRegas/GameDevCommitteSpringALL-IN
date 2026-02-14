@@ -140,6 +140,7 @@ namespace TarodevController
 
         public void ExecuteJump()
         {
+            Debug.Log("jump exectued");
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
             _bufferedJumpUsable = false;
