@@ -62,8 +62,9 @@ public class CardManager : MonoBehaviour
 
     public void cardAbility()
     {
-        //cards[currCard].useAbility()
+        
         Debug.Log("Card ability used!");
+        cards[currCard].useAbility();
         StartCoroutine(cards[currCard].AbilityCooldown());
        
     }
