@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
 {
     public int maxHealth = 4;
     public int currentHealth;
+    public GameObject player;
+    public GameObject Respawn;
 
     //Add this once you hahve death animation
     //public Animator anim;
@@ -20,7 +22,8 @@ public class Health : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            Destroy(gameObject);
+            player.transform.position = Respawn.transform.position;
+            Start();
         }
     }
 }
