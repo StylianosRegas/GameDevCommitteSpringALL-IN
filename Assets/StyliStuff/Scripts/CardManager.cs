@@ -29,7 +29,7 @@ public class CardManager : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (currCard == cards.Count - 1)
             {

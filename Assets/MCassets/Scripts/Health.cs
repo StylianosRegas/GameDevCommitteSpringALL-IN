@@ -26,4 +26,20 @@ public class Health : MonoBehaviour
             Start();
         }
     }
+
+    public void Regen()
+    {
+        if(currentHealth < maxHealth)
+        {
+            currentHealth++;
+        }
+    }
+
+    public void Sheild()
+    {
+        if (currentHealth <= maxHealth)
+        {
+            currentHealth++;
+        }
+    }
 }
