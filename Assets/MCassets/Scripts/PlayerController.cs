@@ -13,12 +13,12 @@ namespace TarodevController
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
-        [SerializeField] private ScriptableStats _stats;
-        private Rigidbody2D _rb;
-        private CapsuleCollider2D _col;
-        private FrameInput _frameInput;
-        private Vector2 _frameVelocity;
-        private bool _cachedQueryStartInColliders;
+        [SerializeField] public ScriptableStats _stats;
+        public Rigidbody2D _rb;
+        public CapsuleCollider2D _col;
+        public FrameInput _frameInput;
+        public Vector2 _frameVelocity;
+        public bool _cachedQueryStartInColliders;
 
         #region Interface
 
@@ -28,9 +28,9 @@ namespace TarodevController
 
         #endregion
 
-        private float _time;
+        public float _time;
 
-        private void Awake()
+        public void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
@@ -38,13 +38,13 @@ namespace TarodevController
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
 
-        private void Update()
+        public void Update()
         {
             _time += Time.deltaTime;
             GatherInput();
         }
 
-        private void GatherInput()
+        public void GatherInput()
         {
             _frameInput = new FrameInput
             {
@@ -66,7 +66,7 @@ namespace TarodevController
             }
         }
 
-        private void FixedUpdate()
+        public void FixedUpdate()
         {
             CheckCollisions();
 
@@ -79,10 +79,10 @@ namespace TarodevController
 
         #region Collisions
         
-        private float _frameLeftGrounded = float.MinValue;
-        private bool _grounded;
+        public float _frameLeftGrounded = float.MinValue;
+        public bool _grounded;
 
-        private void CheckCollisions()
+        public void CheckCollisions()
         {
             Physics2D.queriesStartInColliders = false;
 
@@ -118,16 +118,16 @@ namespace TarodevController
 
         #region Jumping
 
-        private bool _jumpToConsume;
-        private bool _bufferedJumpUsable;
-        private bool _endedJumpEarly;
-        private bool _coyoteUsable;
-        private float _timeJumpWasPressed;
+        public bool _jumpToConsume;
+        public bool _bufferedJumpUsable;
+        public bool _endedJumpEarly;
+        public bool _coyoteUsable;
+        public float _timeJumpWasPressed;
 
-        private bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
-        private bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
+        public bool HasBufferedJump => _bufferedJumpUsable && _time < _timeJumpWasPressed + _stats.JumpBuffer;
+        public bool CanUseCoyote => _coyoteUsable && !_grounded && _time < _frameLeftGrounded + _stats.CoyoteTime;
 
-        private void HandleJump()
+        public void HandleJump()
         {
             if (!_endedJumpEarly && !_grounded && !_frameInput.JumpHeld && _rb.linearVelocity.y > 0) _endedJumpEarly = true;
 
@@ -138,7 +138,7 @@ namespace TarodevController
             _jumpToConsume = false;
         }
 
-        private void ExecuteJump()
+        public void ExecuteJump()
         {
             _endedJumpEarly = false;
             _timeJumpWasPressed = 0;
@@ -152,7 +152,7 @@ namespace TarodevController
 
         #region Horizontal
 
-        private void HandleDirection()
+        public void HandleDirection()
         {
             if (_frameInput.Move.x == 0)
             {
@@ -169,7 +169,7 @@ namespace TarodevController
 
         #region Gravity
 
-        private void HandleGravity()
+        public void HandleGravity()
         {
             if (_grounded && _frameVelocity.y <= 0f)
             {
@@ -185,10 +185,10 @@ namespace TarodevController
 
         #endregion
 
-        private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
+        public void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
 
 #if UNITY_EDITOR
-        private void OnValidate()
+        public void OnValidate()
         {
             if (_stats == null) Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
         }
