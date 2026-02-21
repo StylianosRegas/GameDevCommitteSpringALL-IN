@@ -16,6 +16,7 @@ namespace TarodevController
         [SerializeField] public ScriptableStats _stats;
         public Rigidbody2D _rb;
         public CapsuleCollider2D _col;
+        public bool isFlipped;
         public FrameInput _frameInput;
         public Vector2 _frameVelocity;
         public bool _cachedQueryStartInColliders;
@@ -42,6 +43,16 @@ namespace TarodevController
         {
             _time += Time.deltaTime;
             GatherInput();
+
+            if(_rb.linearVelocity.x > 0)
+            {
+                isFlipped = false;
+            }
+
+            if(_rb.linearVelocity.x < 0)
+            {
+                isFlipped = true;
+            }
         }
 
         public void GatherInput()
@@ -157,11 +168,13 @@ namespace TarodevController
         {
             if (_frameInput.Move.x == 0)
             {
+                
                 var deceleration = _grounded ? _stats.GroundDeceleration : _stats.AirDeceleration;
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             }
             else
             {
+                
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
             }
         }

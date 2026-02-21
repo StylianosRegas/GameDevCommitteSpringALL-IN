@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 394759306}
   - component: {fileID: 394759305}
   - component: {fileID: 394759307}
+  - component: {fileID: 394759308}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -354,6 +355,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClubAbility
   player: {fileID: 1870292309}
+--- !u!114 &394759308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394759304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb36a8729c33495439e725529ee10f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeartCards
+  playerHealth: {fileID: 0}
 --- !u!1 &446157982
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +379,7 @@ GameObject:
   - component: {fileID: 446157983}
   - component: {fileID: 446157984}
   m_Layer: 0
-  m_Name: RevolvingShield
+  m_Name: SpeedBoost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,11 +413,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   CardType: 4
-  cooldown: 5
+  cooldown: 10
   hasCooldown: 0
-  name: Revolving Shield
-  description: displays a shield that revolves around the player
-  club: {fileID: 394759307}
+  name: Speed Boost
+  description: Boosts Speed
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759307}
+        m_TargetAssemblyTypeName: ClubAbility, Assembly-CSharp
+        m_MethodName: SpeedBoost
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &452869665
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +846,7 @@ GameObject:
   - component: {fileID: 848137868}
   - component: {fileID: 848137869}
   m_Layer: 0
-  m_Name: PokerChip
+  m_Name: Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -854,9 +882,23 @@ MonoBehaviour:
   CardType: 3
   cooldown: 5
   hasCooldown: 0
-  name: Poker Chip
-  description: Shoots a poker chip in an arc
-  club: {fileID: 394759307}
+  name: Dash
+  description: Dashes a short distance
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759307}
+        m_TargetAssemblyTypeName: ClubAbility, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1111131952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,7 +1438,21 @@ MonoBehaviour:
   hasCooldown: 0
   name: Heart Regen
   description: heals one heart
-  club: {fileID: 394759307}
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759308}
+        m_TargetAssemblyTypeName: HeartCards, Assembly-CSharp
+        m_MethodName: Regen
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1870292302}
+          m_ObjectArgumentAssemblyTypeName: Health, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1870292298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1544650614272011795, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
@@ -1459,7 +1515,7 @@ GameObject:
   - component: {fileID: 2089312156}
   - component: {fileID: 2089312157}
   m_Layer: 0
-  m_Name: Dash
+  m_Name: DoubleJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1495,9 +1551,23 @@ MonoBehaviour:
   CardType: 2
   cooldown: 5
   hasCooldown: 0
-  name: Dash
-  description: Dashes player forward
-  club: {fileID: 394759307}
+  name: Double Jump
+  description: Jumps the player
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759307}
+        m_TargetAssemblyTypeName: ClubAbility, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
