@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 1212430319}
   - component: {fileID: 1212430323}
   - component: {fileID: 1212430324}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1007,6 +1007,14 @@ MonoBehaviour:
   currentHealth: 0
   player: {fileID: 0}
   Respawn: {fileID: 0}
+  iFramesDuration: 0
+  numOfFlashes: 0
+  spriteRend: {fileID: 0}
+--- !u!212 &1530665148 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2969068313154050967, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
+  m_PrefabInstance: {fileID: 750350727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572019242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1178,9 @@ MonoBehaviour:
   currentHealth: 0
   player: {fileID: 1655878200}
   Respawn: {fileID: 755163118}
+  iFramesDuration: 2
+  numOfFlashes: 3
+  spriteRend: {fileID: 1530665148}
 --- !u!114 &1870292306
 MonoBehaviour:
   m_ObjectHideFlags: 0
