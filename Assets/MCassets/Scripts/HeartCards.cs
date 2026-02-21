@@ -9,6 +9,12 @@ public class HeartCards : MonoBehaviour
         playerHealth.Regen();
     }
 
+    public void InvulAbility(Health playerHealth)
+    {
+        playerHealth.Invul(10f);
+    }
+
+    // Eventually chnage this to the diamonds script
     public void Sheild(Health playerHealth)
     {
         playerHealth.Sheild();
