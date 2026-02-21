@@ -11,7 +11,7 @@ public class HeartCards : MonoBehaviour
 
     public void InvulAbility(Health playerHealth)
     {
-        playerHealth.Invul(10f);
+        playerHealth.Invul(10f, Color.blue);
     }
 
     // Eventually chnage this to the diamonds script

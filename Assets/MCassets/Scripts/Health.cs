@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField] public float iFramesDuration;
     [SerializeField] public int numOfFlashes;
     public SpriteRenderer spriteRend;
+    public Color damageColor = new Color(1, 0, 0, 0.5f);
 
     //Add this once you hahve death animation
     //public Animator anim;
@@ -26,7 +27,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        StartCoroutine(Invul(iFramesDuration));
+        StartCoroutine(Invul(iFramesDuration, damageColor));
 
         if(currentHealth <= 0)
         {
@@ -51,12 +52,12 @@ public class Health : MonoBehaviour
         }
     }
 
-    public IEnumerator Invul(float iFramesDuration)
+    public IEnumerator Invul(float iFramesDuration, Color color)
     {
         Physics2D.IgnoreLayerCollision(6, 7, true);
         for (int i = 0; i < numOfFlashes; i++)
         {
-            spriteRend.color = new Color(1, 0, 0, 0.5f);
+            spriteRend.color = color;
             yield return new WaitForSeconds(iFramesDuration / (numOfFlashes * 2));
             spriteRend.color = Color.white;
             yield return new WaitForSeconds(iFramesDuration / (numOfFlashes * 2));
