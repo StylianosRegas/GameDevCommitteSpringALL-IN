@@ -13,7 +13,7 @@ public class HeartCards : MonoBehaviour
 
     public void InvulAbility(Health playerHealth)
     {
-        StartCoroutine(playerHealth.Invul(10f));
+        playerHealth.Invul(10f, Color.blue);
     }
 
     // Eventually chnage this to the diamonds script
