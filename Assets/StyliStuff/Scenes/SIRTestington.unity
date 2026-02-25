@@ -1065,7 +1065,7 @@ GameObject:
   - component: {fileID: 1212430319}
   - component: {fileID: 1212430323}
   - component: {fileID: 1212430324}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1247,6 +1247,9 @@ MonoBehaviour:
   currentHealth: 0
   player: {fileID: 0}
   Respawn: {fileID: 0}
+  iFramesDuration: 0
+  numOfFlashes: 0
+  spriteRend: {fileID: 0}
 --- !u!1 &1572019242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1446,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 394759308}
         m_TargetAssemblyTypeName: HeartCards, Assembly-CSharp
-        m_MethodName: Regen
+        m_MethodName: InvulAbility
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1870292302}
@@ -1474,6 +1477,9 @@ MonoBehaviour:
   currentHealth: 0
   player: {fileID: 1655878200}
   Respawn: {fileID: 755163118}
+  iFramesDuration: 2
+  numOfFlashes: 3
+  spriteRend: {fileID: 0}
 --- !u!114 &1870292306
 MonoBehaviour:
   m_ObjectHideFlags: 0

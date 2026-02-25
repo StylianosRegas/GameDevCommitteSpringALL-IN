@@ -54,6 +54,7 @@ public class Health : MonoBehaviour
 
     public IEnumerator Invul(float iFramesDuration, Color color)
     {
+        Debug.Log("activated");
         Physics2D.IgnoreLayerCollision(6, 7, true);
         for (int i = 0; i < numOfFlashes; i++)
         {
