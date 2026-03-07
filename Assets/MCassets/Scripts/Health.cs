@@ -9,6 +9,8 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public GameObject player;
     public GameObject Respawn;
+    public GameObject Revive;
+    
 
     [Header("Iframes")]
     [SerializeField] public float iFramesDuration;
@@ -24,12 +26,18 @@ public class Health : MonoBehaviour
         spriteRend = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, bool revive)
     {
         currentHealth -= amount;
         StartCoroutine(Invul(iFramesDuration, damageColor));
 
-        if(currentHealth <= 0)
+        if(currentHealth <= 0 && revive == true)
+        {
+            player.transform.position = Revive.transform.position;
+            currentHealth = 1;
+        }
+        
+        else if(currentHealth <= 0)
         {
             player.transform.position = Respawn.transform.position;
             Start();
