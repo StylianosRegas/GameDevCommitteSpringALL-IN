@@ -25,12 +25,11 @@ public class HeartCards : MonoBehaviour
         playerHealth.Sheild();
     }
 
-    public void Rez(Health playerHealth)
+    public void Rez()
     {
-        if(playerHealth.currentHealth == 0)
+        if(playerHealth.currentHealth <= 0)
         {
-            player.transform.position = Revive.transform.position;
-            playerHealth.currentHealth = 1;
+            playerHealth.Death(true);
         }
     }
 }

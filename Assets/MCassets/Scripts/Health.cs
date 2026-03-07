@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     public GameObject player;
     public GameObject Respawn;
     public GameObject Revive;
+    public bool revive;
     
 
     [Header("Iframes")]
@@ -26,21 +27,26 @@ public class Health : MonoBehaviour
         spriteRend = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public void TakeDamage(int amount, bool revive)
+    public void Death(bool revive)
     {
-        currentHealth -= amount;
-        StartCoroutine(Invul(iFramesDuration, damageColor));
-
-        if(currentHealth <= 0 && revive == true)
+        if (revive == true)
         {
             player.transform.position = Revive.transform.position;
             currentHealth = 1;
         }
-        
-        else if(currentHealth <= 0)
+        else
         {
             player.transform.position = Respawn.transform.position;
             Start();
+        }
+    }
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        StartCoroutine(Invul(iFramesDuration, damageColor));
+        if (currentHealth <= 0)
+        {
+            Death(false);
         }
     }
 
@@ -72,5 +78,12 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(iFramesDuration / (numOfFlashes * 2));
         }
         Physics2D.IgnoreLayerCollision(6, 7, false);
+    }
+
+    public IEnumerator rezTimer(float activeTime)
+    {
+        revive = true;
+        yield return new WaitForSeconds(activeTime);
+        
     }
 }
