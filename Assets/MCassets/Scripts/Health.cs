@@ -82,8 +82,9 @@ public class Health : MonoBehaviour
 
     public IEnumerator rezTimer(float activeTime)
     {
+        Debug.Log("Activated RezTimer");
         revive = true;
         yield return new WaitForSeconds(activeTime);
-        
+        revive = false;
     }
 }
