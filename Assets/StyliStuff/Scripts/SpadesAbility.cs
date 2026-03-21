@@ -1,19 +1,22 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TarodevController;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpadesAbility : MonoBehaviour
 {
     public PlayerController player;
     public Health playerHealth;
+    public PlayerAttack playerAttack;
     public GameObject pokerChip;
     public GameObject boomerangOb;
+    public GameObject moneyOb;
    
     public float xVelocity = 500f;
     public float yVelocity = 500f;
 
-    public float damageMulti = 1.5f;
+    public int damageIncrease = 2;
     public float damageTimer = 5f;
 
 
@@ -40,17 +43,22 @@ public class SpadesAbility : MonoBehaviour
     {
         // implement damage increase once we got it in the game
         int ogHealth = playerHealth.currentHealth;
+        int ogDmg = playerAttack.damage;
         //need to change damage
 
         if(playerHealth.currentHealth / 2 == 0)
         {
             playerHealth.currentHealth = 1;
+          
         }
         else
         {
             playerHealth.currentHealth /= 2;
+          
         }
-            StartCoroutine(DmgDuration(damageTimer, damageMulti, ogHealth));
+        playerAttack.damage = damageIncrease;
+
+        StartCoroutine(DmgDuration(damageTimer, damageIncrease, ogHealth,ogDmg));
        
     }
 
@@ -58,26 +66,43 @@ public class SpadesAbility : MonoBehaviour
     {
         if (player.isFlipped)
         {
-            Vector3 spawnPosition = new Vector2(player.transform.position.x - 1f, player.transform.position.y + 1f);
-            GameObject boom = Instantiate(boomerangOb, spawnPosition, Quaternion.identity);
-            boom.GetComponent<Rigidbody2D>().AddForce(new Vector2(-xVelocity, 0));
 
+            Instantiate(boomerangOb, new Vector3(player.transform.position.x + 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
 
 
         }
         else
         {
-            Vector3 spawnPosition = new Vector2(player.transform.position.x + 1f, player.transform.position.y + 1f);
-            GameObject chip = Instantiate(boomerangOb, spawnPosition, Quaternion.identity);
-            chip.GetComponent<Rigidbody2D>().AddForce(new Vector2(xVelocity, 0));
+
+            Instantiate(boomerangOb, new Vector3(player.transform.position.x - 2, player.transform.position.y+1, player.transform.position.z), Quaternion.identity);
+
         }
     }
 
-    public IEnumerator DmgDuration(float time, float speedMulti,int ogHealth)
+    public void moneyGun()
+    {
+
+        if (player.isFlipped)
+        {
+
+            Instantiate(moneyOb, new Vector3(player.transform.position.x + 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+
+
+        }
+        else
+        {
+
+            Instantiate(moneyOb, new Vector3(player.transform.position.x - 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+
+        }
+    }
+
+    public IEnumerator DmgDuration(float time, float speedMulti,int ogHealth, int ogDmg)
     {
 
         yield return new WaitForSeconds(time);
         playerHealth.currentHealth = ogHealth;
+        playerAttack.damage = ogDmg;
 
 
     }
