@@ -27,9 +27,6 @@ public class HeartCards : MonoBehaviour
 
     public void Rez()
     {
-        if(playerHealth.currentHealth <= 0)
-        {
-            playerHealth.Death(true);
-        }
+            playerHealth.StartCoroutine(playerHealth.rezTimer(10f));
     }
 }

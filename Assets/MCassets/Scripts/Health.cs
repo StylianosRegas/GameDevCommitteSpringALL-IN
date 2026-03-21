@@ -29,15 +29,18 @@ public class Health : MonoBehaviour
 
     public void Death(bool revive)
     {
-        if (revive == true)
+        Debug.Log("Player died. Revive status: " + revive);
+        if (revive)
         {
+            Debug.Log("Reviving Player");
             player.transform.position = Revive.transform.position;
             currentHealth = 1;
         }
         else
         {
+            Debug.Log("Normal Respawn");
             player.transform.position = Respawn.transform.position;
-            Start();
+            currentHealth = maxHealth;
         }
     }
     public void TakeDamage(int amount)
@@ -46,7 +49,7 @@ public class Health : MonoBehaviour
         StartCoroutine(Invul(iFramesDuration, damageColor));
         if (currentHealth <= 0)
         {
-            Death(false);
+            Death(revive);
         }
     }
 
