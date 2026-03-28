@@ -19,6 +19,9 @@ public class Health : MonoBehaviour
     public SpriteRenderer spriteRend;
     public Color damageColor = new Color(1, 0, 0, 0.5f);
 
+    [Header("Misc")]
+    public bool shieldActive = false;
+
     //Add this once you hahve death animation
     //public Animator anim;
     void Start()
@@ -45,6 +48,11 @@ public class Health : MonoBehaviour
     }
     public void TakeDamage(int amount)
     {
+        if (shieldActive)
+        {
+            Debug.Log("Damage Blocked by Shield");
+            return;
+        }
         currentHealth -= amount;
         StartCoroutine(Invul(iFramesDuration, damageColor));
         if (currentHealth <= 0)
