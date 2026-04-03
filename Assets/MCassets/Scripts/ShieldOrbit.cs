@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShieldOrbit : MonoBehaviour
 {
     public Transform player;
-    public float radius = 1.5f;
+    public float radius = 2.5f;
     public float speed = 2f;
 
     private float angle;
@@ -17,5 +17,6 @@ public class ShieldOrbit : MonoBehaviour
         float y = Mathf.Sin(angle) * radius;
 
         transform.position = player.position + new Vector3(x, y, 0);
+        
     }
 }

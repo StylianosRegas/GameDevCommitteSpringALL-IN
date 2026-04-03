@@ -10,6 +10,7 @@ public class DiamondCards : MonoBehaviour
     public GameObject PlatformSpawn;
     public Transform player;
     public float spawnDistance = 2;
+    public GameObject Decoy;
     public void activeSheild()
     {
         Debug.Log("Sheild Activated");
@@ -21,6 +22,7 @@ public class DiamondCards : MonoBehaviour
         shield.SetActive(true);
         playerHealth.shieldActive = true;
 
+        
         yield return new WaitForSeconds(duration);
 
         shield.SetActive(false);
@@ -54,4 +56,19 @@ public class DiamondCards : MonoBehaviour
         yield return new WaitForSeconds(duration);
         Destroy(wall);
     }
+
+    public void SpawnDecoy()
+    {
+        Debug.Log("Decoy Spawned");
+        Vector3 spawnPos = player.position;
+        GameObject decoy = Instantiate(Decoy, spawnPos, player.rotation);
+        StartCoroutine(DestroyDecoy(decoy, 8f));
+    }
+
+    IEnumerator DestroyDecoy(GameObject decoy, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Destroy(decoy);
+    }
+    
 }

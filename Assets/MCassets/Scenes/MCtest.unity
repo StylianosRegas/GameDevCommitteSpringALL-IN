@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 53214471}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.33, z: 0}
+  m_LocalPosition: {x: -0.02, y: 4.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -395,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 434364379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0.04, y: 0.71, z: 0}
   m_LocalScale: {x: 0.3732, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1073,6 +1073,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1870292298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1083593544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083593545}
+  - component: {fileID: 1083593546}
+  m_Layer: 0
+  m_Name: Decoy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1083593545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083593544}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1288753641}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1083593546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083593544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69080ee8e94514b9beddbbbb4f6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  CardType: 1
+  cooldown: 10
+  hasCooldown: 0
+  name: default card
+  description: yada yada
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1230409832}
+        m_TargetAssemblyTypeName: DiamondCards, Assembly-CSharp
+        m_MethodName: SpawnDecoy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1111131952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,6 +1520,7 @@ MonoBehaviour:
   - {fileID: 354698555}
   - {fileID: 702512222}
   - {fileID: 634853889}
+  - {fileID: 1083593546}
 --- !u!4 &1230409829
 Transform:
   m_ObjectHideFlags: 0
@@ -1517,6 +1582,7 @@ MonoBehaviour:
   PlatformSpawn: {fileID: 725511385585041179, guid: 0aec719797837444a85996dd15104687, type: 3}
   player: {fileID: 1870292298}
   spawnDistance: 2
+  Decoy: {fileID: 2581221084333193559, guid: 15eddaf41e5a34f4395d2a0f1c5b4d71, type: 3}
 --- !u!1 &1288753640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1616,7 @@ Transform:
   - {fileID: 354698554}
   - {fileID: 702512221}
   - {fileID: 634853888}
+  - {fileID: 1083593545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1325444928
