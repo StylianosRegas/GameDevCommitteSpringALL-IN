@@ -18,10 +18,6 @@ namespace TarodevController
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
 
-        [Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
-        [SerializeField] private ParticleSystem _launchParticles;
-        [SerializeField] private ParticleSystem _moveParticles;
-        [SerializeField] private ParticleSystem _landParticles;
 
         [Header("Audio Clips")] [SerializeField]
         private AudioClip[] _footsteps;
@@ -42,7 +38,7 @@ namespace TarodevController
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
 
-            _moveParticles.Play();
+            
         }
 
         private void OnDisable()
@@ -50,7 +46,7 @@ namespace TarodevController
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
 
-            _moveParticles.Stop();
+            
         }
 
         private void Update()
@@ -75,7 +71,7 @@ namespace TarodevController
         {
             var inputStrength = Mathf.Abs(_player.FrameInput.x);
             
-            _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+           
         }
 
         private void HandleCharacterTilt()
@@ -90,12 +86,7 @@ namespace TarodevController
             _anim.ResetTrigger(GroundedKey);
 
 
-            if (_grounded) // Avoid coyote
-            {
-                SetColor(_jumpParticles);
-                SetColor(_launchParticles);
-                _jumpParticles.Play();
-            }
+
         }
 
         private void OnGroundedChanged(bool grounded, float impact)
@@ -105,19 +96,15 @@ namespace TarodevController
             if (grounded)
             {
                 DetectGroundColor();
-                SetColor(_landParticles);
+               
 
                 _anim.SetTrigger(GroundedKey);
                 _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
-                _moveParticles.Play();
+                
 
-                _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
-                _landParticles.Play();
+                
             }
-            else
-            {
-                _moveParticles.Stop();
-            }
+            
         }
 
         private void DetectGroundColor()
@@ -127,7 +114,7 @@ namespace TarodevController
             if (!hit || hit.collider.isTrigger || !hit.transform.TryGetComponent(out SpriteRenderer r)) return;
             var color = r.color;
             _currentGradient = new ParticleSystem.MinMaxGradient(color * 0.9f, color * 1.2f);
-            SetColor(_moveParticles);
+            
         }
 
         private void SetColor(ParticleSystem ps)
