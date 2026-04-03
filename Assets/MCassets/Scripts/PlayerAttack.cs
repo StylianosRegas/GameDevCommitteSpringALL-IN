@@ -24,13 +24,15 @@ public class PlayerAttack : MonoBehaviour
         if(timeBetweenAtk <= 0)
         {
             //then attack
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
                 for(int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Health>().TakeDamage(damage);
+                    enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
+
+                timeBetweenAtk = startTimeBetweenAtk;
 
             }
         }
