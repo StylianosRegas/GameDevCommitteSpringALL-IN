@@ -16,6 +16,9 @@ public class SpadesAbility : MonoBehaviour
     public float xVelocity = 500f;
     public float yVelocity = 500f;
 
+    public float spawnTime = .2f;
+    public int moneyAmount = 20;
+
     public int damageIncrease = 2;
     public float damageTimer = 5f;
 
@@ -66,34 +69,57 @@ public class SpadesAbility : MonoBehaviour
     {
         if (player.isFlipped)
         {
-
-            Instantiate(boomerangOb, new Vector3(player.transform.position.x + 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+            boomerangOb.GetComponent<Boomerang>().direction = -1;
+            Instantiate(boomerangOb, new Vector3(player.transform.position.x - 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
 
 
         }
         else
         {
+            boomerangOb.GetComponent<Boomerang>().direction = 1;
 
-            Instantiate(boomerangOb, new Vector3(player.transform.position.x - 2, player.transform.position.y+1, player.transform.position.z), Quaternion.identity);
+            Instantiate(boomerangOb, new Vector3(player.transform.position.x + 2, player.transform.position.y+1, player.transform.position.z), Quaternion.identity);
 
         }
     }
 
-    public void moneyGun()
+    public void moneyAttack()
+    {
+        StartCoroutine(moneySpawner());
+    }
+
+    public void Uppercut()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        player.ExecuteJump();
+        
+
+
+    }
+
+    public IEnumerator moneySpawner()
     {
 
-        if (player.isFlipped)
+        for (int i = 0; i < moneyAmount; i++)
         {
+            if (player.isFlipped)
+            {
+                moneyOb.GetComponent<MoneyAttack>().direction = -1;
+                GameObject money = Instantiate(moneyOb, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+                Rigidbody2D rb = money.GetComponent<Rigidbody2D>();
+                //rb.AddForce(transform.up * 100f);
 
-            Instantiate(moneyOb, new Vector3(player.transform.position.x + 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
 
+            }
+            else
+            {
+                moneyOb.GetComponent<MoneyAttack>().direction = 1;
+                GameObject money = Instantiate(moneyOb, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+                
+                
 
-        }
-        else
-        {
-
-            Instantiate(moneyOb, new Vector3(player.transform.position.x - 2, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
-
+            }
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 
@@ -106,4 +132,5 @@ public class SpadesAbility : MonoBehaviour
 
 
     }
+
 }

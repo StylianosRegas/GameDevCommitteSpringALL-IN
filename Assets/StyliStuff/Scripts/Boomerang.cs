@@ -1,8 +1,10 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
+    public int direction = 1;
     public float rotationalSpeed = 360f;
     public float moveSpeed = 8f;
     public float distance = 5f;
@@ -22,7 +24,7 @@ public class Boomerang : MonoBehaviour
     private IEnumerator BoomerangRoutine()
     {
         Vector3 startPos = transform.position;
-        Vector3 targetPos = startPos + new Vector3(distance, 0, 0);
+        Vector3 targetPos = startPos + (new Vector3(distance, 0, 0)*direction);
 
         // --- Phase 1: Throw outward ---
         while (Vector3.Distance(transform.position, targetPos) > 0.05f)
@@ -47,5 +49,13 @@ public class Boomerang : MonoBehaviour
         // --- Done: destroy ---
         Debug.Log("Boomerang destroyed");
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   lifetime: 3
-  launchForce: 15
+  launchForce: 6
   launchAngle: 45
 --- !u!50 &5028275577254966912
 Rigidbody2D:
