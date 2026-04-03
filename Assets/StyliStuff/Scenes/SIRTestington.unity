@@ -119,6 +119,70 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69981001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69981002}
+  - component: {fileID: 69981003}
+  m_Layer: 0
+  m_Name: Uppercut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &69981002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69981001}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.62404, y: -10.26316, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377513017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69981003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69981001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69080ee8e94514b9beddbbbb4f6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  CardType: 1
+  cooldown: 3
+  hasCooldown: 0
+  name: Uppercut
+  description: Launches the player in the air and hits an uppercut
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759309}
+        m_TargetAssemblyTypeName: SpadesAbility, Assembly-CSharp
+        m_MethodName: Uppercut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &361201173
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,10 +349,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1511821136}
+  - {fileID: 2015233554}
   - {fileID: 1773946263}
   - {fileID: 2089312156}
   - {fileID: 848137868}
   - {fileID: 446157983}
+  - {fileID: 1829127135}
+  - {fileID: 1494506835}
+  - {fileID: 69981002}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &394759304
@@ -303,6 +372,7 @@ GameObject:
   - component: {fileID: 394759305}
   - component: {fileID: 394759307}
   - component: {fileID: 394759308}
+  - component: {fileID: 394759309}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -323,10 +393,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   cards:
+  - {fileID: 69981003}
   - {fileID: 1773946264}
   - {fileID: 2089312157}
   - {fileID: 848137869}
   - {fileID: 446157984}
+  - {fileID: 1829127136}
+  - {fileID: 1511821137}
+  - {fileID: 1494506836}
+  - {fileID: 2015233555}
 --- !u!4 &394759306
 Transform:
   m_ObjectHideFlags: 0
@@ -367,7 +442,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb36a8729c33495439e725529ee10f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeartCards
-  playerHealth: {fileID: 0}
+  playerHealth: {fileID: 1870292302}
+--- !u!114 &394759309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394759304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322d0891a56223640b3f818b0adc507f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpadesAbility
+  player: {fileID: 1870292309}
+  playerHealth: {fileID: 1870292302}
+  playerAttack: {fileID: 0}
+  pokerChip: {fileID: 7041654266151775937, guid: f822af1efea25d8469b13ce36cf9dc72, type: 3}
+  boomerangOb: {fileID: 5604267253099663223, guid: 28cf762e1d780774f91ea0c3dd5a74f0, type: 3}
+  moneyOb: {fileID: 3986485841178885119, guid: cdf5246c1ddf0e7438ff13be0dab1427, type: 3}
+  xVelocity: 500
+  yVelocity: 250
+  spawnTime: 0.2
+  moneyAmount: 30
+  damageIncrease: 2
+  damageTimer: 5
 --- !u!1 &446157982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1349,135 @@ MonoBehaviour:
   iFramesDuration: 0
   numOfFlashes: 0
   spriteRend: {fileID: 0}
+  damageColor: {r: 1, g: 0, b: 0, a: 0.5}
+--- !u!1 &1494506834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494506835}
+  - component: {fileID: 1494506836}
+  m_Layer: 0
+  m_Name: Boomerang
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1494506835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494506834}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.62404, y: -10.26316, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377513017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1494506836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494506834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69080ee8e94514b9beddbbbb4f6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  CardType: 1
+  cooldown: 3
+  hasCooldown: 0
+  name: Boomerang
+  description: Shoots a boomerang forward, then returns
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759309}
+        m_TargetAssemblyTypeName: SpadesAbility, Assembly-CSharp
+        m_MethodName: boomerang
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &1511821135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1511821136}
+  - component: {fileID: 1511821137}
+  m_Layer: 0
+  m_Name: DamageIncrease
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1511821136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511821135}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.62404, y: -10.26316, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377513017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1511821137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511821135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69080ee8e94514b9beddbbbb4f6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  CardType: 1
+  cooldown: 10
+  hasCooldown: 0
+  name: Damage Increase
+  description: lowers health, but increases damage
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759309}
+        m_TargetAssemblyTypeName: SpadesAbility, Assembly-CSharp
+        m_MethodName: boomerang
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1572019242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,6 +1684,70 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1829127134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829127135}
+  - component: {fileID: 1829127136}
+  m_Layer: 0
+  m_Name: PokerChip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1829127135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829127134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377513017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829127136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829127134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69080ee8e94514b9beddbbbb4f6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  CardType: 1
+  cooldown: 3
+  hasCooldown: 0
+  name: Poker Chip
+  description: 'shoots a poker chip in an arc '
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759309}
+        m_TargetAssemblyTypeName: SpadesAbility, Assembly-CSharp
+        m_MethodName: PokerChip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1870292298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1544650614272011795, guid: 88097b566ad1fdd489d7ee77465b57aa, type: 3}
@@ -1478,8 +1770,9 @@ MonoBehaviour:
   player: {fileID: 1655878200}
   Respawn: {fileID: 755163118}
   iFramesDuration: 2
-  numOfFlashes: 3
+  numOfFlashes: 4
   spriteRend: {fileID: 0}
+  damageColor: {r: 1, g: 0, b: 0, a: 0.5}
 --- !u!114 &1870292306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,6 +1803,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61c64124c8575748994f087b9dc1b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2015233553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2015233554}
+  - component: {fileID: 2015233555}
+  m_Layer: 0
+  m_Name: Money
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2015233554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015233553}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.62404, y: -10.26316, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377513017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2015233555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015233553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69080ee8e94514b9beddbbbb4f6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Card
+  CardType: 1
+  cooldown: 2
+  hasCooldown: 0
+  name: Money Attack
+  description: lowers health, but increases damage
+  ability:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 394759309}
+        m_TargetAssemblyTypeName: SpadesAbility, Assembly-CSharp
+        m_MethodName: moneyAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2089312155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1921,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 394759307}
         m_TargetAssemblyTypeName: ClubAbility, Assembly-CSharp
-        m_MethodName: Dash
+        m_MethodName: doubleJump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

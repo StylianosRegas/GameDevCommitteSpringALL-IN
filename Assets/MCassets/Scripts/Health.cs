@@ -91,11 +91,5 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(6, 7, false);
     }
 
-    public IEnumerator rezTimer(float activeTime)
-    {
-        Debug.Log("Activated RezTimer");
-        revive = true;
-        yield return new WaitForSeconds(activeTime);
-        revive = false;
-    }
+    
 }
