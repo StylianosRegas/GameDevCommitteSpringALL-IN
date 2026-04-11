@@ -12,8 +12,10 @@ namespace TarodevController
 
         [SerializeField] private SpriteRenderer _sprite;
 
-        [Header("Settings")] [SerializeField, Range(1f, 3f)]
-        private float Horizontal = 2;
+        [Header("Settings")]
+        [SerializeField, Range(1f, 3f)]
+        private float _idleSpeed = 2;
+        private static readonly int IsGroundedKey = Animator.StringToHash("IsGrounded");
 
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
@@ -31,6 +33,7 @@ namespace TarodevController
         {
             _source = GetComponent<AudioSource>();
             _player = GetComponentInParent<IPlayerController>();
+            _anim.SetBool(IsGroundedKey, true);
         }
 
         private void OnEnable()
@@ -70,7 +73,8 @@ namespace TarodevController
         private void HandleIdleSpeed()
         {
             var inputStrength = Mathf.Abs(_player.FrameInput.x);
-            
+            _anim.SetFloat("Horizontal", inputStrength);
+            _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _idleSpeed, inputStrength));
            
         }
 
@@ -82,8 +86,9 @@ namespace TarodevController
 
         private void OnJumped()
         {
-            _anim.SetTrigger(JumpKey);
-            _anim.ResetTrigger(GroundedKey);
+            
+            _anim.SetBool(IsGroundedKey, false);
+            
 
 
 
@@ -92,13 +97,14 @@ namespace TarodevController
         private void OnGroundedChanged(bool grounded, float impact)
         {
             _grounded = grounded;
+            _anim.SetBool(IsGroundedKey, grounded);
             
-            if (grounded)
+            if (_grounded)
             {
                 DetectGroundColor();
                
 
-                _anim.SetTrigger(GroundedKey);
+                
                 _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
                 
 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d19df9b1eb41cc14894b63131791b87f
+guid: feaa8d5697799dc479f0312c35538720
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6390118874295128208
-    second: Run5_0
+      213: 2368302663014052693
+    second: StandRunJump__Run5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Run5_0
+      name: StandRunJump__Run5_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 240
-        height: 353
+        x: 10
+        y: 15
+        width: 321
+        height: 356
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 07fae197dbcb157a0800000000000000
-      internalID: -6390118874295128208
+      spriteID: 553709569b6edd020800000000000000
+      internalID: 2368302663014052693
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0edeb7294740f094ba2943b25ef0fcc0
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Run5_0: -6390118874295128208
+      StandRunJump__Run5_0: 2368302663014052693
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

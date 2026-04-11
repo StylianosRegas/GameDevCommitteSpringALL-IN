@@ -177,8 +177,6 @@ namespace TarodevController
             {
                 
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
-                float Horizontal = Input.GetAxis("Horizontal");
-                anim.SetFloat("Horizontal", Mathf.Abs(Horizontal));
             }
         }
 
