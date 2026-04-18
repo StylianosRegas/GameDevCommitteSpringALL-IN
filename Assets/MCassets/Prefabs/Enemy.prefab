@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8095418625468062912}
   - component: {fileID: 6209807674545957769}
   - component: {fileID: 6990139903662934793}
+  - component: {fileID: 6618023750939384388}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -217,3 +218,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6618023750939384388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178346073795561176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb815f095ffb3f4439fdab105a669b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
+  speed: 2
