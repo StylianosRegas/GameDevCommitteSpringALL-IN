@@ -9,12 +9,18 @@ public class Health : MonoBehaviour
     public int currentHealth;
     public GameObject player;
     public GameObject Respawn;
+    public GameObject Revive;
+    public bool revive;
+    
 
     [Header("Iframes")]
     [SerializeField] public float iFramesDuration;
     [SerializeField] public int numOfFlashes;
     public SpriteRenderer spriteRend;
     public Color damageColor = new Color(1, 0, 0, 0.5f);
+
+    [Header("Misc")]
+    public bool shieldActive = false;
 
     //Add this once you hahve death animation
     //public Animator anim;
@@ -24,15 +30,34 @@ public class Health : MonoBehaviour
         spriteRend = GetComponentInChildren<SpriteRenderer>();
     }
 
+    public void Death(bool revive)
+    {
+        Debug.Log("Player died. Revive status: " + revive);
+        if (revive)
+        {
+            Debug.Log("Reviving Player");
+            player.transform.position = Revive.transform.position;
+            currentHealth = 1;
+        }
+        else
+        {
+            Debug.Log("Normal Respawn");
+            player.transform.position = Respawn.transform.position;
+            currentHealth = maxHealth;
+        }
+    }
     public void TakeDamage(int amount)
     {
+        if (shieldActive)
+        {
+            Debug.Log("Damage Blocked by Shield");
+            return;
+        }
         currentHealth -= amount;
         StartCoroutine(Invul(iFramesDuration, damageColor));
-
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            player.transform.position = Respawn.transform.position;
-            Start();
+            Death(revive);
         }
     }
 
@@ -54,6 +79,7 @@ public class Health : MonoBehaviour
 
     public IEnumerator Invul(float iFramesDuration, Color color)
     {
+        Debug.Log("activated");
         Physics2D.IgnoreLayerCollision(6, 7, true);
         for (int i = 0; i < numOfFlashes; i++)
         {
@@ -71,5 +97,11 @@ public class Health : MonoBehaviour
         {
             Respawn = collision.gameObject;
         }
+    public IEnumerator rezTimer(float activeTime)
+    {
+        Debug.Log("Activated RezTimer");
+        revive = true;
+        yield return new WaitForSeconds(activeTime);
+        revive = false;
     }
 }

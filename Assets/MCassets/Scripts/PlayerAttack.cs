@@ -12,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public int damage;
     private Health enemyHealth;
+    public Animator anim;
+    private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,25 +26,38 @@ public class PlayerAttack : MonoBehaviour
         if(timeBetweenAtk <= 0)
         {
             //then attack
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+                StartCoroutine(animTimer(0.5f));
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
                 for(int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<Health>().TakeDamage(damage);
+                    enemiesToDamage[i].GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
 
+                timeBetweenAtk = startTimeBetweenAtk;
+                
+
             }
+            
         }
         else
         {
             timeBetweenAtk -= Time.deltaTime;
         }
+        
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+    }
+
+    public IEnumerator animTimer(float activeTime)
+    {
+        anim.SetBool(IsAttacking, true);
+        yield return new WaitForSeconds(activeTime);
+        anim.SetBool(IsAttacking, false);
     }
 }

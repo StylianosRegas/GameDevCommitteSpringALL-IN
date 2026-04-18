@@ -12,16 +12,14 @@ namespace TarodevController
 
         [SerializeField] private SpriteRenderer _sprite;
 
-        [Header("Settings")] [SerializeField, Range(1f, 3f)]
-        private float _maxIdleSpeed = 2;
+        [Header("Settings")]
+        [SerializeField, Range(1f, 3f)]
+        private float _idleSpeed = 2;
+        private static readonly int IsGroundedKey = Animator.StringToHash("IsGrounded");
 
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
 
-        [Header("Particles")] [SerializeField] private ParticleSystem _jumpParticles;
-        [SerializeField] private ParticleSystem _launchParticles;
-        [SerializeField] private ParticleSystem _moveParticles;
-        [SerializeField] private ParticleSystem _landParticles;
 
         [Header("Audio Clips")] [SerializeField]
         private AudioClip[] _footsteps;
@@ -35,6 +33,7 @@ namespace TarodevController
         {
             _source = GetComponent<AudioSource>();
             _player = GetComponentInParent<IPlayerController>();
+            _anim.SetBool(IsGroundedKey, true);
         }
 
         private void OnEnable()
@@ -42,7 +41,7 @@ namespace TarodevController
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
 
-            _moveParticles.Play();
+            
         }
 
         private void OnDisable()
@@ -50,7 +49,7 @@ namespace TarodevController
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
 
-            _moveParticles.Stop();
+            
         }
 
         private void Update()
@@ -74,8 +73,9 @@ namespace TarodevController
         private void HandleIdleSpeed()
         {
             var inputStrength = Mathf.Abs(_player.FrameInput.x);
-            _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _maxIdleSpeed, inputStrength));
-            _moveParticles.transform.localScale = Vector3.MoveTowards(_moveParticles.transform.localScale, Vector3.one * inputStrength, 2 * Time.deltaTime);
+            _anim.SetFloat("Horizontal", inputStrength);
+            _anim.SetFloat(IdleSpeedKey, Mathf.Lerp(1, _idleSpeed, inputStrength));
+           
         }
 
         private void HandleCharacterTilt()
@@ -86,38 +86,31 @@ namespace TarodevController
 
         private void OnJumped()
         {
-            _anim.SetTrigger(JumpKey);
-            _anim.ResetTrigger(GroundedKey);
+            
+            _anim.SetBool(IsGroundedKey, false);
+            
 
 
-            if (_grounded) // Avoid coyote
-            {
-                SetColor(_jumpParticles);
-                SetColor(_launchParticles);
-                _jumpParticles.Play();
-            }
+
         }
 
         private void OnGroundedChanged(bool grounded, float impact)
         {
             _grounded = grounded;
+            _anim.SetBool(IsGroundedKey, grounded);
             
-            if (grounded)
+            if (_grounded)
             {
                 DetectGroundColor();
-                SetColor(_landParticles);
+               
 
-                _anim.SetTrigger(GroundedKey);
+                
                 _source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
-                _moveParticles.Play();
+                
 
-                _landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
-                _landParticles.Play();
+                
             }
-            else
-            {
-                _moveParticles.Stop();
-            }
+            
         }
 
         private void DetectGroundColor()
@@ -127,7 +120,7 @@ namespace TarodevController
             if (!hit || hit.collider.isTrigger || !hit.transform.TryGetComponent(out SpriteRenderer r)) return;
             var color = r.color;
             _currentGradient = new ParticleSystem.MinMaxGradient(color * 0.9f, color * 1.2f);
-            SetColor(_moveParticles);
+            
         }
 
         private void SetColor(ParticleSystem ps)

@@ -15,6 +15,7 @@ namespace TarodevController
     {
         [SerializeField] public ScriptableStats _stats;
         public Rigidbody2D _rb;
+        public Animator anim;
         public CapsuleCollider2D _col;
         public bool isFlipped;
         public FrameInput _frameInput;
