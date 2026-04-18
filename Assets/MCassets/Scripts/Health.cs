@@ -93,10 +93,11 @@ public class Health : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Checkpoint"))
+        if (collision.gameObject.CompareTag("Checkpoint"))
         {
             Respawn = collision.gameObject;
         }
+    }
     public IEnumerator rezTimer(float activeTime)
     {
         Debug.Log("Activated RezTimer");
