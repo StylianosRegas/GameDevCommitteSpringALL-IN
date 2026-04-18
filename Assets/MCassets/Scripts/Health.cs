@@ -91,6 +91,12 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(6, 7, false);
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Checkpoint"))
+        {
+            Respawn = collision.gameObject;
+        }
     public IEnumerator rezTimer(float activeTime)
     {
         Debug.Log("Activated RezTimer");
