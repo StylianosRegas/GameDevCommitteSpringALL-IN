@@ -68,4 +68,9 @@ public class CardManager : MonoBehaviour
         StartCoroutine(cards[currCard].AbilityCooldown());
        
     }
+
+    public string getCurrCard()
+    {
+        return (cards[currCard].name);
+    }
 }
